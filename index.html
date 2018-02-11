@@ -21,42 +21,29 @@
   		visibilidad.innerHTML = 'alpha:'+alpha+'<br> beta:'+beta+'<br> gamma:'+gamma+'<br><br>'
   		console.log(e);
   }
-//  function handleMotionEvent(event) {
-//  		console.log(event);
-//     var x = event.acceleration.x;
-//     var y = event.acceleration.y;
-//     var z = event.acceleration.z;
-//     	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
-//     // Do something awesome.
-// }
 
-// window.addEventListener("devicemotion", handleMotionEvent, true);
 
-// setInterval(getLocation, 300);
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition);
-//     } else {
-//         comentario.innerHTML = "Geolocation is not supported by this browser.";
-//     }
-// }
-// function showPosition(position) {
-//   console.log(position);
-//     // comentario.innerHTML = "Latitude: " + position.coords.latitude + 
-//     // "<br>Longitude: " + position.coords.longitude; 
-// }
+var lonf1;
+var lonf2;
+var latf1;
+var latf2;
+var momento = 0;
+ window.addEventListener('click', ejemplo);
 var contador = 0;
 
-setInterval(ejemplo, 1000);
+
 function ejemplo(){
-	console.log('hola')
+	momento++;
+		if(momento === 1){
+			console.log(momento)
   var startPos;
   var geoSuccess = function(position) {
   	contador++;
 
     startPos = position;
     comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude +'<br>' + contador;
-  
+  	lonf1 = startPos.coords.longitude;
+  	latf1 = startPos.coords.latitude;
   };
   var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);
@@ -68,8 +55,41 @@ function ejemplo(){
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 }
+		
+else if(momento === 2){
+	console.log(momento)
+	  var startPos;
+  var geoSuccess = function(position) {
+  	contador++;
+
+    startPos = position;
+    comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude +'<br>' + contador;
+  	lonf2 = startPos.coords.longitude;
+  	latf2 = startPos.coords.latitude;
+  };
+}
+  else if(momento === 3){
+  	console.log(momento)
+  	measure(latf1, lonf1, latf2, lonf2);
+  }
+
+}
 
 
+function measure(lat1, lon1, lat2, lon2){  // generally used geo measurement function
+    var R = 6378.137; // Radius of earth in KM
+    var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+    var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    	comentario.innerHTML = d*1000;
+    console.log(d * 1000);
+    return d * 1000; // meters
+
+}
 
 </script>
 </body>
