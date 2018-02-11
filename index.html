@@ -5,9 +5,11 @@
 </head>
 <body>
 <div class="visibilidad"></div>
-<p> epale</p>
+<div class="visibilidad2"></div>
+
 <script>
   var visibilidad = document.querySelector('.visibilidad')
+  var visibilidad2 = document.querySelector('.visibilidad2')
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
   function deviceOrientationHandler(e){
   	var beta = Math.round(e.beta)
@@ -16,7 +18,16 @@
   		visibilidad.innerHTML = 'alpha:'+alpha+'<br> beta:'+beta+'<br> gamma:'+gamma+'<br><br>'
   		console.log(e);
   }
- 
+ function handleMotionEvent(event) {
+
+    var x = Math.round(event.accelerationIncludingGravity.x);
+    var y = Math.round(event.accelerationIncludingGravity.y);
+    var z = Math.round(event.accelerationIncludingGravity.z);
+    	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
+    // Do something awesome.
+}
+
+window.addEventListener("devicemotion", handleMotionEvent, true);
 
 </script>
 </body>
