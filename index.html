@@ -45,11 +45,16 @@ window.addEventListener("devicemotion", handleMotionEvent, true);
 //     // comentario.innerHTML = "Latitude: " + position.coords.latitude + 
 //     // "<br>Longitude: " + position.coords.longitude; 
 // }
-window.onload = function() {
+var contador = 0;
+setInterval(ejemplo, 1000)
+function ejemplo(){
+	console.log('hola')
   var startPos;
   var geoSuccess = function(position) {
+  	contador++;
+
     startPos = position;
-    comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude;
+    comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude +'<br>' + contador;
   
   };
   var geoError = function(error) {
@@ -60,8 +65,8 @@ window.onload = function() {
     //   2: position unavailable (error response from location provider)
     //   3: timed out
   };
-  navigator.geolocation.watchPosition(geoSuccess, geoError);
-};
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+}
 
 </script>
 </body>
