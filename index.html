@@ -7,8 +7,10 @@
 <div> ya!</div>
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
+<p class="comentario"></p>
 
 <script>
+  var comentario = document.querySelector('.comentario')
   var visibilidad = document.querySelector('.visibilidad')
   var visibilidad2 = document.querySelector('.visibilidad2')
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
@@ -21,14 +23,45 @@
   }
  function handleMotionEvent(event) {
  		console.log(event);
-    var x = Math.round(event.acceleration.x);
-    var y = Math.round(event.acceleration.y);
-    var z = Math.round(event.acceleration.z);
+    var x = event.acceleration.x;
+    var y = event.acceleration.y;
+    var z = event.acceleration.z;
     	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
     // Do something awesome.
 }
 
 window.addEventListener("devicemotion", handleMotionEvent, true);
+
+// setInterval(getLocation, 300);
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//     } else {
+//         comentario.innerHTML = "Geolocation is not supported by this browser.";
+//     }
+// }
+// function showPosition(position) {
+//   console.log(position);
+//     // comentario.innerHTML = "Latitude: " + position.coords.latitude + 
+//     // "<br>Longitude: " + position.coords.longitude; 
+// }
+window.onload = function() {
+  var startPos;
+  var geoSuccess = function(position) {
+    startPos = position;
+    comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude;
+  
+  };
+  var geoError = function(error) {
+    console.log('Error occurred. Error code: ' + error.code);
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from location provider)
+    //   3: timed out
+  };
+  navigator.geolocation.watchPosition(geoSuccess, geoError);
+};
 
 </script>
 </body>
