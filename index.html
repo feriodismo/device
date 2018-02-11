@@ -4,9 +4,9 @@
 	<title>Ubicacion del Cel</title>
 </head>
 <body>
-<div> ya!</div>
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
+<strong>geolocation</strong>
 <p class="comentario"></p>
 
 <script>
@@ -21,16 +21,16 @@
   		visibilidad.innerHTML = 'alpha:'+alpha+'<br> beta:'+beta+'<br> gamma:'+gamma+'<br><br>'
   		console.log(e);
   }
- function handleMotionEvent(event) {
- 		console.log(event);
-    var x = event.acceleration.x;
-    var y = event.acceleration.y;
-    var z = event.acceleration.z;
-    	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
-    // Do something awesome.
-}
+//  function handleMotionEvent(event) {
+//  		console.log(event);
+//     var x = event.acceleration.x;
+//     var y = event.acceleration.y;
+//     var z = event.acceleration.z;
+//     	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
+//     // Do something awesome.
+// }
 
-window.addEventListener("devicemotion", handleMotionEvent, true);
+// window.addEventListener("devicemotion", handleMotionEvent, true);
 
 // setInterval(getLocation, 300);
 // function getLocation() {
@@ -46,8 +46,8 @@ window.addEventListener("devicemotion", handleMotionEvent, true);
 //     // "<br>Longitude: " + position.coords.longitude; 
 // }
 var contador = 0;
-setInterval(ejemplo, 1000)
-function ejemplo(){
+
+window.onload = function(){
 	console.log('hola')
   var startPos;
   var geoSuccess = function(position) {
@@ -67,6 +67,10 @@ function ejemplo(){
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 }
+
+navigator.geolocation.watchPosition(function(position) {
+  comentario.innerHTML = position.coords.latitude +'<br>'+ position.coords.longitude;
+});
 
 </script>
 </body>
