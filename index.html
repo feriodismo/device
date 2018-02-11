@@ -9,7 +9,7 @@
   var visibilidad = document.querySelector('.visibilidad')
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
   function deviceOrientationHandler(e){
-  		visibilidad.innerHTML += 'beta:'+e.beta+'<br> alpha:'+e.alpha+'<br> gamma:'+e.gamma+'<br><br>'
+  		visibilidad.innerHTML = 'beta:'+e.beta+'<br> alpha:'+e.alpha+'<br> gamma:'+e.gamma+'<br><br>'
   		console.log(e);
   }
  
