@@ -4,6 +4,7 @@
 	<title>Ubicacion del Cel</title>
 </head>
 <body>
+<div> ya!</div>
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
 
@@ -19,10 +20,10 @@
   		console.log(e);
   }
  function handleMotionEvent(event) {
-
-    var x = Math.round(event.accelerationIncludingGravity.x);
-    var y = Math.round(event.accelerationIncludingGravity.y);
-    var z = Math.round(event.accelerationIncludingGravity.z);
+ 		console.log(event);
+    var x = Math.round(event.acceleration.x);
+    var y = Math.round(event.acceleration.y);
+    var z = Math.round(event.acceleration.z);
     	visibilidad2.innerHTML = 'x:'+x+'<br> y:'+y+'<br> z:'+z+'<br><br>'
     // Do something awesome.
 }
