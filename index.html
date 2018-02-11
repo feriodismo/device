@@ -46,7 +46,7 @@
 //     // "<br>Longitude: " + position.coords.longitude; 
 // }
 var contador = 0;
-ejemplo();
+setInterval(ejemplo, 1000);
 function ejemplo(){
 	console.log('hola')
   var startPos;
@@ -68,8 +68,8 @@ function ejemplo(){
   var geo_options = {
   enableHighAccuracy: true, 
   maximumAge        : 30000, 
-  timeout           : 5000,
-};
+  timeout           : 1000,
+};mm
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geo_options);
 }
 
