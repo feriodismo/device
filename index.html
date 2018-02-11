@@ -47,7 +47,8 @@
 // }
 var contador = 0;
 
-window.onload = function(){
+setInterval(ejemplo, 1000);
+function ejemplo(){
 	console.log('hola')
   var startPos;
   var geoSuccess = function(position) {
@@ -68,9 +69,7 @@ window.onload = function(){
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 }
 
-navigator.geolocation.watchPosition(function(position) {
-  comentario.innerHTML = position.coords.latitude +'<br>'+ position.coords.longitude;
-});
+
 
 </script>
 </body>
