@@ -4,7 +4,7 @@
 	<title>Ubicacion del Cel</title>
 </head>
 <body>
-<div> ya!</div>
+<div> prueba</div>
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
 <p class="comentario"></p>
@@ -27,13 +27,17 @@
   		console.log(e);
       if (alpha > 255){
         body.style.background = '#fff'
+        coment('no pasa la variable');
       }
       else{
-      body.style.background = 'rgb(alpha, 99, 71)'
+      body.style.background = 'rgb('+alpha+', 99, 71)'
+      coment('si pasa la variable');
       }
   }
 
-
+  function coment(string){
+    comentario.innerHTML = string
+  }
 
 //  function handleMotionEvent(event) {
 //  		console.log(event);
