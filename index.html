@@ -10,17 +10,31 @@
 <p class="comentario"></p>
 
 <script>
+  var body = document.querySelector('body')
   var comentario = document.querySelector('.comentario')
   var visibilidad = document.querySelector('.visibilidad')
   var visibilidad2 = document.querySelector('.visibilidad2')
+  var beta;
+  var gamma;
+  var alpha;
+
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
   function deviceOrientationHandler(e){
-  	var beta = Math.round(e.beta)
-  	var gamma = Math.round(e.gamma)
-  	var alpha = Math.round(e.alpha)
+  	beta = Math.round(e.beta)
+  	gamma = Math.round(e.gamma)
+  	alpha = Math.round(e.alpha)
   		visibilidad.innerHTML = 'alpha:'+alpha+'<br> beta:'+beta+'<br> gamma:'+gamma+'<br><br>'
   		console.log(e);
+      if (alpha > 255 && alpha < 0){
+        body.style.background = '#fff'
+      }
+      else{
+      body.style.background = rgb(alpha, 99, 71)
+      }
   }
+
+
+
 //  function handleMotionEvent(event) {
 //  		console.log(event);
 //     var x = event.acceleration.x;
@@ -30,48 +44,44 @@
 //     // Do something awesome.
 // }
 
-// window.addEventListener("devicemotion", handleMotionEvent, true);
+// // window.addEventListener("devicemotion", handleMotionEvent, true);
 
-// setInterval(getLocation, 300);
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition);
-//     } else {
-//         comentario.innerHTML = "Geolocation is not supported by this browser.";
-//     }
-// }
-// function showPosition(position) {
-//   console.log(position);
-//     // comentario.innerHTML = "Latitude: " + position.coords.latitude + 
-//     // "<br>Longitude: " + position.coords.longitude; 
-// }
-var contador = 0;
-setInterval(ejemplo, 1000);
-function ejemplo(){
-	console.log('hola')
-  var startPos;
-  var geoSuccess = function(position) {
-  	contador++;
+// // setInterval(getLocation, 300);
+// // function getLocation() {
+// //     if (navigator.geolocation) {
+// //         navigator.geolocation.getCurrentPosition(showPosition);
+// //     } else {
+// //         comentario.innerHTML = "Geolocation is not supported by this browser.";
+// //     }
+// // }
+// // function showPosition(position) {
+// //   console.log(position);
+// //     // comentario.innerHTML = "Latitude: " + position.coords.latitude + 
+// //     // "<br>Longitude: " + position.coords.longitude; 
+// // }
+// var contador = 0;
+// setInterval(ejemplo, 1000);
+// function ejemplo(){
+// 	console.log('hola')
+//   var startPos;
+//   var geoSuccess = function(position) {
+//   	contador++;
 
-    startPos = position;
-    comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude +'<br>' + contador;
+//     startPos = position;
+//     comentario.innerHTML = startPos.coords.latitude + '<br>' + startPos.coords.longitude +'<br>' + contador;
   
-  };
-  var geoError = function(error) {
-    console.log('Error occurred. Error code: ' + error.code);
-    // error.code can be:
-    //   0: unknown error
-    //   1: permission denied
-    //   2: position unavailable (error response from location provider)
-    //   3: timed out
-  };
-  var geo_options = {
-  enableHighAccuracy: true, 
-  maximumAge        : 30000, 
-  timeout           : 1000,
-};mm
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geo_options);
-}
+//   };
+//   var geoError = function(error) {
+//     console.log('Error occurred. Error code: ' + error.code);
+//     // error.code can be:
+//     //   0: unknown error
+//     //   1: permission denied
+//     //   2: position unavailable (error response from location provider)
+//     //   3: timed out
+//   };
+
+//   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+// }
 
 </script>
 </body>
