@@ -25,12 +25,12 @@
   	alpha = Math.round(e.alpha)
   		visibilidad.innerHTML = 'alpha:'+alpha+'<br> beta:'+beta+'<br> gamma:'+gamma+'<br><br>'
   		console.log(e);
-      if (alpha > 255){
+      if (alpha > 255 && beta > 255){
         body.style.background = '#fff'
         coment('no pasa la variable');
       }
       else{
-      body.style.background = 'rgb('+alpha+', 99, 71)'
+      body.style.background = 'rgb('+alpha+','+beta+', 71)'
       coment('si pasa la variable');
       }
   }
