@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<title>Ubicacion del Cel</title>
+	<style>
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input{
+	margin-top:100px;
+	border:none;
+	background: transparent;
+	color: white;
+	font-size: 40px;
+	font-family: 'Righteous', cursive;
+	width:75px;
+	outline: none;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
+	</style>
 </head>
 <body>
-<<!-- div> prueba</div> -->
+<input placeholder="50" maxlength="3" class="saturacion">
+<!-- div> prueba</div> -->
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
 <p class="comentario"></p>
 
 <script>
+  var saturacion = document.querySelector('.saturacion');
   var body = document.querySelector('body')
   var comentario = document.querySelector('.comentario')
   var visibilidad = document.querySelector('.visibilidad')
@@ -18,7 +51,8 @@
   var beta;
   var gamma;
   var alpha;
-
+  	saturacion.focus();
+  	var sat = 50;
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
   function deviceOrientationHandler(e){
   	beta = Math.round(e.beta)
@@ -31,11 +65,15 @@
       //   coment('no pasa la variable');
       // }
       // else{
-      body.style.background = 'hsl('+alpha+', 100%, 50%)'
+      body.style.background = 'hsl('+alpha+', '+sat+'%, 50%)'
       // coment('si pasa la variable');
       // }
   }
-
+  	saturacion.addEventListener('input', function(){
+  		sat = saturacion.value;
+  		console.log('hola')
+  		body.style.background = 'hsl('+alpha+', '+sat+'%, 50%)'
+  	})
   function coment(string){
     comentario.innerHTML = string
   }
