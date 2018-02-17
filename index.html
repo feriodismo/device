@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<title>Ubicacion del Cel</title>
 	<style>
 body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	text-align: center;
+}
+div{
+	margin-left: 10px;
+	margin-top:10px;
+	border:none;
+	background: transparent;
+	color: white;
+	font-size: 40px;
+	font-family: 'Righteous', cursive;
+	outline: none;
+	margin-right: 
 }
 input{
-	margin-top:100px;
+	text-align: center;
+	margin-top:10px;
+	margin-left: 30px;
 	border:none;
 	background: transparent;
 	color: white;
@@ -18,6 +30,16 @@ input{
 	font-family: 'Righteous', cursive;
 	width:75px;
 	outline: none;
+}
+
+.circulo{
+	color:#f07571;
+	margin: auto;
+	margin-top:30px;
+	background: white;
+	width: 50px;
+	height: 50px;
+	border-radius:50px;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -36,13 +58,20 @@ input{
 	</style>
 </head>
 <body>
-<input placeholder="50" maxlength="3" class="saturacion">
+<div class="config"><p>config:   </p></div>
+<input placeholder="80" maxlength="3" class="saturacion"><br><br><div></div>
+
+<input placeholder="70" maxlength="3" class="ilumin">
+<div onClick="desaparecer()" class="circulo">-</div>
 <!-- div> prueba</div> -->
 <div class="visibilidad"></div>
 <div class="visibilidad2"></div>
 <p class="comentario"></p>
 
 <script>
+var config = document.querySelector('.config')
+var circulo = document.querySelector('.circulo')
+		var ilumin = document.querySelector('.ilumin');
   var saturacion = document.querySelector('.saturacion');
   var body = document.querySelector('body')
   var comentario = document.querySelector('.comentario')
@@ -52,7 +81,8 @@ input{
   var gamma;
   var alpha;
   	saturacion.focus();
-  	var sat = 50;
+  	var sat = 80;
+  	var ill = 70;
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
   function deviceOrientationHandler(e){
   	beta = Math.round(e.beta)
@@ -65,15 +95,27 @@ input{
       //   coment('no pasa la variable');
       // }
       // else{
-      body.style.background = 'hsl('+alpha+', '+sat+'%, 50%)'
+      body.style.background = 'hsl('+alpha+', '+sat+'%, '+ill+'%)'
       // coment('si pasa la variable');
       // }
   }
   	saturacion.addEventListener('input', function(){
   		sat = saturacion.value;
-  		console.log('hola')
-  		body.style.background = 'hsl('+alpha+', '+sat+'%, 50%)'
+
+  		body.style.background = 'hsl('+alpha+', '+sat+'%, '+ill+'%)'
   	})
+  	ilumin.addEventListener('input', function(){
+  		ill = ilumin.value;
+  
+  		body.style.background = 'hsl('+alpha+', '+sat+'%, '+ill+'%)'
+  	})
+
+  	function desaparecer(){
+  		ilumin.style.display = 'none';
+  		saturacion.style.display = 'none';
+  		circulo.style.display = 'none';
+  		config.style.display = 'none';
+  	}
   function coment(string){
     comentario.innerHTML = string
   }
