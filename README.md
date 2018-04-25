@@ -1,7 +1,7 @@
 # device.
 
 first test for an interactive two players puzzle game.
-(now you can enjoy the test with your mobile device at feriodismo.github.io/device)
+(now you can enjoy the test with your mobile device at feriodismo.github.io/device )
 
   ## topics for the actual game:
     - player one will use a pc or mac interface.
